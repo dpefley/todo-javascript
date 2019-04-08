@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>ToDo App</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body onload="retrieveAJAX()">
+    <div id="header"><h1>ToDo JavaScript App</h1></div>
+    <div class="new">
+      <form>
+        New ToDo: <input type="text" id="textEntry">
+        <button type="button" id="textSubmit" onclick="postAJAX()">
+      </form>
+    </div>
+    <div id="todo">
+      <input type="checkbox" name="complete" value="Done" id="complete">
+      <button type="button" name="delete" id="delete" onclick="deleteAJAX()">Delete</button>
+      <div id="todoText"></div>
+    </div>
+    <div id="newTodos"></div>
+
+
+
+    <script src="main.js"></script>
+  </body>
+</html>
