@@ -1,4 +1,4 @@
-var allTodos = [];
+var todoIds = [];
 
 function display(entry, idPassed) { //Creates new HTML elements for each ToDo
   //var entry = document.getElementById("textEntry").value;
@@ -12,7 +12,7 @@ function display(entry, idPassed) { //Creates new HTML elements for each ToDo
   div.id = idPassed;
 
   document.getElementById("newTodos").appendChild(div);
-  document.getElementById(idPassed).innerHTML = '<br><div id="todo"><input type="checkbox" name="complete" value="Done" id="complete"><button type="button" name="delete" id="delete" onclick="deleteAJAX()">Delete</button><div id="todoText">'+entry+'</div></div>';
+  document.getElementById(idPassed).innerHTML = '<br><div id="todo"><input type="checkbox" name="complete" value="Done" id="complete"><button type="button" name="delete" id="delete" onclick="findIdAndDelete(this)">Delete</button><div id="todoText">'+entry+'</div></div>';
 }
 
 function postAJAX() {
@@ -60,7 +60,9 @@ function retrieveAJAX() {
       var todo = JSON.parse(this.responseText);
       console.log(todo);
       displayToDos(todo);
-      allTodos = todo;
+      for (var i = 0; i < todo.length; i++) {
+        todoIds[i] = todo[i].id;
+      }
     }
   };
 
@@ -91,7 +93,7 @@ function clearForReload() {
 }
 
 function deleteAJAX(id) {
-  console.log("Delete called");
+  console.log("Delete called on id: "+id);
 
   //id = "698b2ca0-5a21-11e9-8d53-79f7917261d4"; //test id
 
@@ -111,6 +113,21 @@ function deleteAJAX(id) {
   xhttp2.setRequestHeader("Content-type", "application/json");
   xhttp2.setRequestHeader("x-api-key", "9b99af89b8927089828bb405cb26692c2640e47a89638e3b1cb55dcd7f813c99");
   xhttp2.send();
+}
+
+function findIdAndDelete(node) {
+  var grandParentId = node.parentElement.parentElement.id;
+  var grandParent = node.parentElement.parentElement;
+
+
+  deleteAJAX(grandParentId);
+  removeDisplay(grandParent);
+  retrieveAJAX();
+}
+
+function removeDisplay(node) {
+  var parent = node.parentElement;
+  document.getElementById(parent.id).outerHTML="";
 }
 
 
