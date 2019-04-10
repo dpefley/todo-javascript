@@ -2,3 +2,17 @@
   float: left;
   margin-right: 15px;
 }
+
+#example {
+  visibility: hidden;
+}
+
+body {
+  background-color: #EFEFEF;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+
+input[type=checkbox]:checked {
+  color: red;
+}

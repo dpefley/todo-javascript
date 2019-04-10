@@ -8,16 +8,18 @@
   <body onload="retrieveAJAX()">
     <div id="header"><h1>ToDo JavaScript App</h1></div>
     <div class="new">
-      <form>
+      <form id="entryForm">
         New ToDo: <input type="text" id="textEntry">
-        <button type="button" id="textSubmit" onclick="postAJAX()">
+        <button type="button" id="textSubmit" onclick="postAJAX()">Add</button>
       </form>
     </div>
-    <div id="todo">
-      <input type="checkbox" name="complete" value="Done" id="complete">
+
+    <div id="example">
+      <input type="checkbox" name="check" value="Done" id="check" onclick="findIdAndUpdate()">
       <button type="button" name="delete" id="delete" onclick="deleteAJAX()">Delete</button>
       <div id="todoText"></div>
     </div>
+
     <div id="newTodos"></div>
 
 
