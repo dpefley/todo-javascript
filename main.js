@@ -21,17 +21,32 @@ function display(entry, idPassed) { //Creates new HTML elements for each ToDo
   document.getElementById(idPassed).innerHTML = '<br><div id="todo"><input type="checkbox" name="complete" value="Done" id="complete" onclick="findIdAndUpdate(this)"><button type="button" name="delete" id="delete" onclick="findIdAndDelete(this)">Delete</button><div id="todoText">'+entry+'</div></div>';
 }
 
-function checkBox(completed, idPassed) { //Creates new HTML elements for each ToDo
+function checkBox(completed, idPassed) {
+
   var children = document.getElementById(idPassed).children;
   if (children == null) {
     console.log("no children");
     return;
   }
 
+  // if (completed) {
+  //   document.getElementById(idPassed).style.backgroundColor = "green"
+  // }
+  // else {
+  //   document.getElementById(idPassed).style.backgroundColor = "#EFEFEF"
+  // }
+
   var grandChild = null;
   for (var i = 0; i < children.length; i++) {
     if (children[i].id == "todo") {
       grandChild = children[i].children;
+      children[i].style.height = "18px"
+      if (completed) {
+        children[i].style.backgroundColor = "green"
+      }
+      else {
+        children[i].style.backgroundColor = "#EFEFEF"
+      }
     }
   }
 
@@ -152,21 +167,23 @@ function findIdAndDelete(node) {
 function findIdAndUpdate(node) {
   var grandParent = node.parentElement.parentElement;
 
-  updateAJAX(grandParent);
+  updateAJAX(grandParent, node);
 }
 
-function updateAJAX(grandParent) {
+function updateAJAX(grandParent, node) {
   var xhttp2 = new XMLHttpRequest();
   //console.log("Grandparent.id = " + grandParent.id);
 
-  var data = {
-    completed: true
-  };
-  if (document.getElementById("complete").checked == false) {
-    data = {
-      completed: false
-    };
+  var checked = false;
+  if (node.checked){
+    checked = true;
   }
+
+  var data = {
+    completed: checked
+  };
+
+  //completed true or false
 
   xhttp2.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {

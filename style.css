@@ -17,3 +17,16 @@ body {
 input[type="checkbox"] {
   filter: invert(100%) hue-rotate(18deg) brightness(1.7);
 }
+
+
+/* https://www.w3schools.com/css/css3_buttons.asp */
+button {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
