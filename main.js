@@ -39,7 +39,6 @@ function checkBox(completed, idPassed) { //Creates new HTML elements for each To
     for (var i = 0; i < grandChild.length; i++) {
       if (grandChild[i].id == "complete") {
         grandChild[i].checked = completed;
-        console.log(completed);
       }
     }
   }
@@ -112,7 +111,6 @@ function displayToDos(todos) {
   for (var i = 0; i < todos.length; i++) {
     // console.log(todos[i].text);
     display(todos[i].text, todos[i].id);
-    console.log(todos[i].completed);
     checkBox(todos[i].completed, todos[i].id);
   }
 }
@@ -159,7 +157,6 @@ function findIdAndUpdate(node) {
 
 function updateAJAX(grandParent) {
   var xhttp2 = new XMLHttpRequest();
-  console.log("updateAJAX()");
   //console.log("Grandparent.id = " + grandParent.id);
 
   var data = {
